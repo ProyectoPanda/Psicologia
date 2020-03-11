@@ -1,0 +1,116 @@
+
+ .container {
+	 display: inline-block;
+	 position: absolute;
+	 margin: auto;
+	 width: 400px;
+	 padding: 0;
+	 background-color: #efefef;
+	 padding: 60px 30px 50px;
+	 border-radius: 10px;
+	 box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .3);
+	 left: 0;
+	 right: 0;
+	 top: 10%;
+}
+ h2 {
+	 color: #9c9ca1;
+	 font-weight: 900;
+	 text-align: center;
+	 margin: 0 0 0px;
+	 padding-bottom: 0px;
+	 font-size: 50px;
+}
+ p {
+	 margin: 1em 0 0;
+}
+ ul {
+	 list-style: none;
+	 margin: 0;
+	 padding: 0;
+	 text-align: center;
+}
+ ul.yesno li {
+	 color: #aaa;
+	 display: inline-block;
+	 position: relative;
+	 margin: 0px 10px;
+	 box-sizing: border-box;
+}
+ ul.yesno li input[type=radio] {
+	 position: absolute;
+	 visibility: hidden;
+}
+ ul.yesno li input[type=radio]:checked ~ label {
+	 background-color: #94c12c;
+	 color: #fff;
+}
+ #recipient .section-head {
+	 margin-top: 20px;
+}
+ #guest .section-head {
+	 margin-top: 40px;
+}
+ #recipient, #guest, #submit {
+	 padding-left: 30px;
+	 padding-right: 30px;
+	 overflow: hidden;
+	 transition: all 0.2s ease;
+	 box-sizing: border-box;
+}
+ #recipient .section-head, #guest .section-head, #submit .section-head {
+	 color: #cbcbce;
+	 border-bottom: 1px solid #cbcbce;
+	 margin-bottom: 20px;
+	 margin-left: -30px;
+	 margin-right: -30px;
+	 text-transform: uppercase;
+	 letter-spacing: 0.1em;
+	 font-style: normal;
+	 font-size: 22px;
+}
+ #recipient li, #guest li, #submit li {
+	 margin: 15px auto 0;
+	 text-align: left;
+	 font-style: italic;
+	 font-size: 14px;
+}
+ #recipient input[type=text], #guest input[type=text], #submit input[type=text], #recipient input[type=email], #guest input[type=email], #submit input[type=email] {
+	 width: 100%;
+	 padding: 8px;
+	 margin-top: 5px;
+	 box-sizing: border-box;
+	 border: 1px solid #666;
+	 background-color: #efefef;
+}
+ .buttons {
+	 text-align: center;
+}
+ .button {
+	 display: inline-block;
+	 position: relative;
+	 font-weight: 300;
+	 font-size: 16px;
+	 z-index: 9;
+	 cursor: pointer;
+	 transition: all 0.2s ease;
+	 background-color: #b6b6ba;
+	 color: white;
+	 padding: 5px 10px;
+	 border-radius: 300px;
+	 margin: auto;
+	 border: none;
+	 text-transform: uppercase;
+	 letter-spacing: 0.1em;
+	 font-size: 14px;
+}
+ .button:hover {
+	 background-color: #8f8f95;
+}
+ .submit {
+	 margin-top: 20px;
+}
+ label {
+	 display: none;
+}
+ 

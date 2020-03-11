@@ -1,0 +1,8 @@
+tr:hover {
+    color: #000;
+    background-color: #E2EEFF ;
+}
+
+tr:hover td {
+    background-color: transparent;
+}

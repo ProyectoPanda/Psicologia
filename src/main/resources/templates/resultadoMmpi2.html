@@ -1,0 +1,374 @@
+<!doctype html>
+<!--[if lte IE 9]> <html class="lte-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no" />
+
+<link rel="icon" type="image/png" href="assets/img/favicon-16x16.png"
+	sizes="16x16">
+<link rel="icon" type="image/png" href="assets/img/favicon-32x32.png"
+	sizes="32x32">
+
+<title>Altair Admin v2.2.0 - Login Page</title>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+<link rel="stylesheet"
+	href="bower_components/kendo-ui/styles/kendo.common-material.min.css" />
+<link rel="stylesheet"
+	href="bower_components/kendo-ui/styles/kendo.material.min.css" />
+
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500'
+	rel='stylesheet' type='text/css'>
+
+<!-- uikit -->
+<link rel="stylesheet"
+	href="bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
+
+<!-- flag icons -->
+<link rel="stylesheet" href="assets/icons/flags/flags.min.css"
+	media="all">
+
+<!-- altair admin -->
+<link rel="stylesheet" href="assets/css/main.min.css" media="all">
+
+<!-- altair admin -->
+<link rel="stylesheet" href="assets/css/hover.css" media="all">
+<link rel="stylesheet" href="assets/css/radio.css" media="all">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+</head>
+
+<body style="background-color: #DADADA; padding: 24px" class="top_menu">
+
+	<!-- main header -->
+
+		<div class="uk-grid uk-grid-width-medium-1-2" data-uk-grid-margin>
+			<div>
+				<div class="md-card md-card-primary">
+					<div class="md-card-content">
+						<h3>Inventario Multifásico de Personalidad de Minnesota</h3>
+						<p></p>
+						<p>El Inventario Multifásico de Personalidad de Minnesota, 
+						en este caso concreto el MMPI-2 es uno de los instrumentos 
+						más populares dentro de la psicología para evaluar la personalidad, 
+						las características psicopatológicas globales y específicas de la persona, 
+						o las alteraciones psicosomáticas.</p>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="md-card md-card-success">
+					<div class="uk-grid">
+				<div class="uk-width-1-1">
+					<div class="md-card">
+
+						<div class="md-card-content">
+							<div class="uk-grid" data-uk-grid-margin>
+								<div class="uk-width-2-10">
+									<label class="uk-text-bold">Nombre:</label> 
+								</div>
+								<div class="uk-width-8-10">		
+									<label th:text="${exportNombre}"></label> 
+								</div>
+							</div>
+							<div class="uk-grid" data-uk-grid-margin style="margin-top:0px; padding-top:0px;">
+								<div class="uk-width-2-10">
+									<label class="uk-text-bold">Edad:</label> 
+								</div>
+								<div class="uk-width-8-10">		
+									<label th:text="${exportFecha}"></label> 
+								</div>
+							</div>
+							<div class="uk-grid" data-uk-grid-margin style="margin-top:0px; padding-top:0px;">
+								<div class="uk-width-2-10">
+									<label class="uk-text-bold">Sexo:</label> 
+								</div>
+								<div class="uk-width-8-10">		
+									<label th:text="${exportSexo}"></label> 
+								</div>
+							</div>
+							<hr class="uk-grid-divider" style="margin-top:20px; margin-bottom:20px;">
+							<div class="uk-grid" data-uk-grid-margin>
+								<div class="uk-width-medium-1-2" align="left">
+								<button class="md-btn md-btn-success md-btn-wave-light" style="background-color: #FFFFFF; color: #4CAF50; border: 1px solid #4CAF50; border-radius: 4px;">Volver al Inicio</button>
+								</div>
+								<div class="uk-width-medium-1-2" align="right">
+								<button class="md-btn md-btn-success md-btn-wave-light" style="background-color: #FFFFFF; color: BLUE; border: 1px solid BLUE; border-radius: 4px;">Exportar Resultados PDF</button>
+								</div>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="uk-grid uk-grid-width-medium-1-1" data-uk-grid-margin>
+			<div>
+				<div class="md-card md-card-primary">
+					<div class="md-card-content">
+						<h4>Tabla de Resultados</h4>
+					</div>
+					<div class="uk-overflow-container" style="padding-right:40px; padding-left:40px;">
+					<table class="uk-table" id="tabla">
+						<thead>
+                            <tr>
+                                <th style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center"></th>
+                                <th bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; border-right: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center">Total Bruto</th>
+                                <th bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; border-left: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center">TotaL</th>
+                                <th style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center"></th>
+                            </tr>
+                            </thead>
+						<tbody>
+
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">L.</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosL}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportL}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">L.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">F.</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosF}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportF}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">F.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">K.</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosK}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportK}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">K.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Hs. Hipocondría </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosHs}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportHs}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Hs.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">D. Depresión</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosD}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportD}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">D.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Hy. Histeria </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosHy}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportHy}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Hy.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pd. Psicopatía </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosPd}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportPd}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pd.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Mf. Masculinidad/Feminidad</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosMf}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportMf}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Mf.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pa. Paranoia</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosPa}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportPa}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pa.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pt. Psicastenia</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosPt}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportPt}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Pt.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Sc. Esquizofrenia </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosSc}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportSc}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Sc.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Ma. Hipomanía </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosMa}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportMa}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Ma.</td>
+							</tr>
+							<tr>
+								<td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Si. Introversión Social </td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${puntosSi}"></label></td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-3-10 uk-text-center"><label th:text="${exportSi}"></label></td>
+                                <td bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-2-10 uk-text-center">Si.</td>
+							</tr>
+						
+
+						</tbody>
+					</table>
+					<br>
+				</div>
+			</div>
+		</div>
+
+
+					
+				</div>
+
+
+		<div class="uk-grid uk-grid-width-medium-1-1" data-uk-grid-margin>
+			<div>
+				<div class="md-card md-card-success">
+					<div class="md-card-content">
+						<h4>Gráfico de Resultados</h4>
+					</div>
+					<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+    </p>
+</figure>
+				</div>
+			</div>
+		</div>
+		
+		
+			
+			
+			
+			
+			
+			<br>
+		<div class="md-card uk-margin-medium-bottom">
+			<div class="md-card-content">
+				<div class="uk-overflow-container" style="padding-right:20px; padding-left:20px;">
+					<table class="uk-table" id="tabla">
+						<thead>
+                            <tr>
+                                <th bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; border-right: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">Nº</th>
+                                <th bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; border-left: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-8-10 uk-text-center">Pregunta</th>
+                                <th bgcolor="#e8e8e8" style="border-bottom: 1px solid #ffffff; border-left: 1px solid #ffffff; padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">Respuesta</th>
+                            </tr>
+                            </thead>
+						<tbody>
+							<tr>
+								<td style="padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">1</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-8-10">Le gusta la mecánica</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">Verdadero</td>
+							</tr>
+							<tr>
+								<td style="padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">2</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-8-10">Tengo la costumbre de contar objetos sin importancia, como las bombillas de un letrero luminoso o cosas similares.</td>
+                                <td style="padding-top:0px; padding-bottom:0px;" class="uk-width-1-10 uk-text-center">Falso</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+
+		
+		<div class="uk-grid">
+			<div class="uk-width-1-1">
+				<div class="md-card">
+					<div class="md-card-content">
+						<div class="uk-grid" data-uk-grid-margin>
+							<div class="uk-width-medium-1-1" align="left">
+								<button type="submit" id="boton"
+									class="md-btn md-btn-primary md-btn-block md-btn-large submit-button"
+									onclick="clickEvent();">Calificar y Obtener Resultados del MMPI-2</button>
+							</div>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+	<!-- common functions -->
+	<script src="assets/js/common.min.js"></script>
+	<!-- uikit functions -->
+	<script src="assets/js/uikit_custom.min.js"></script>
+	<!-- altair common functions/helpers -->
+	<script src="assets/js/altair_admin_common.min.js"></script>
+
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script',
+				'//www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'UA-65191727-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+
+<script>
+Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Grafico Resultados FFMI-2'
+    },
+    xAxis: {
+        categories: ['L', 'F', 'K', 'Hs', 'D', 'Hy', 'Pd', 'Mf', 'Pa', 'Pt', 'Sc', 'Ma', 'Si']
+    },
+    yAxis: {
+        title: {
+            text: 'CONTEO'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'LETRAS',
+        data: [52, 120, 47]
+    },
+    {
+        name: 'DIAGNOSTICO',
+        data: [null, null, null, 85.5, 78, 84, 66.8, 52, 79, 94, 120, 68.4, 54]
+    }]
+});
+</script>
+	
+</body>
+</html>
