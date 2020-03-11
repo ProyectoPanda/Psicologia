@@ -886,8 +886,8 @@ public class mmpi2Controlador {
 		LocalDate ahora = LocalDate.now();
 
 		Period periodo = Period.between(fechaNac, ahora);
-		String edad = (periodo.getYears() + " AÑOS , " + periodo.getMonths() + " MESES , " + periodo.getDays()
-				+ " DÍAS");
+		String edad = (periodo.getYears() + " ANOS , " + periodo.getMonths() + " MESES , " + periodo.getDays()
+				+ " DIAS");
 
 		return edad;
 
